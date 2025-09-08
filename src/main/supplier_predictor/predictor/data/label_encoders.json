@@ -1,0 +1,39 @@
+{
+  "supplier_account_encoded": [
+    "supplierA_account1",
+    "supplierB_account2",
+    "supplierB_account3",
+    "supplierC_account4",
+    "supplierD_account5",
+    "supplierD_account6"
+  ],
+  "supplier_encoded": [
+    "supplierA",
+    "supplierB",
+    "supplierC",
+    "supplierD"
+  ],
+  "account_encoded": [
+    "account1",
+    "account2",
+    "account3",
+    "account4",
+    "account5",
+    "account6"
+  ],
+  "goods_type_encoded": [
+    "DOCS",
+    "MERCI",
+    "NULL"
+  ],
+  "service_type_encoded": [
+    "BASIC",
+    "EXPRESS",
+    "ITALIA"
+  ],
+  "shipping_type_encoded": [
+    "EXP",
+    "IMP",
+    "NAZ"
+  ]
+}

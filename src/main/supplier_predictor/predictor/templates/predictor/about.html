@@ -1,0 +1,80 @@
+{% extends "predictor/base.html" %}
+{% load static %}
+
+{% block title %}About Shipment Predictor{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-info-circle"></i> About Shipment Predictor</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5>Project Overview</h5>
+                        <p>
+                            The Shipment Predictor is an advanced machine learning application designed to 
+                            predict the most appropriate supplier and account for shipments based on various 
+                            characteristics like geographic locations, parcel dimensions, weight, and 
+                            shipment category.
+                        </p>
+                        
+                        <h5>How It Works</h5>
+                        <p>
+                            Our application uses a hierarchical prediction model that analyzes shipment data through several steps:
+                        </p>
+                        <ol>
+                            <li><strong>Data Preprocessing</strong> - Cleaning and formatting input data</li>
+                            <li><strong>Geocoding</strong> - Converting addresses to geographic coordinates</li>
+                            <li><strong>Category Classification</strong> - Categorizing shipments based on goods description</li>
+                            <li><strong>Feature Engineering</strong> - Calculating distances and analyzing dimensions</li>
+                            <li><strong>Hierarchical Prediction</strong> - First predicting the supplier, then the account</li>
+                        </ol>
+                        
+                        <h5>Technologies Used</h5>
+                        <ul>
+                            <li>Django web framework</li>
+                            <li>Pandas for data manipulation</li>
+                            <li>Scikit-learn for machine learning</li>
+                            <li>Bootstrap for responsive design</li>
+                            <li>DataTables for interactive results</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <h5>Quick Start Guide</h5>
+                                <ol>
+                                    <li>Prepare your shipment data in CSV or Excel format</li>
+                                    <li>Upload the file on the home page</li>
+                                    <li>View the prediction results</li>
+                                    <li>Download results as needed</li>
+                                </ol>
+                                <a href="{% url 'index' %}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-upload"></i> Start Predicting
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5>Need Help?</h5>
+                                <p>
+                                    If you encounter any issues or have questions about the application,
+                                    please contact our support team.
+                                </p>
+                                <a href="mailto:support@example.com" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-envelope"></i> Contact Support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

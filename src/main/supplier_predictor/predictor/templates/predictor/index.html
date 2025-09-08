@@ -1,0 +1,140 @@
+{% extends "predictor/base.html" %}
+{% load static %}
+
+{% block title %}Shipment Predictor - Upload{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'predictor/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-graph-up"></i> Supplier Prediction</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-7">
+                        <h5>Upload Your Shipment Data</h5>
+                        <p>Upload a CSV or Excel file containing shipment data to predict the supplier and account for each shipment.</p>
+                        
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle-fill"></i> {{ error }}
+                        </div>
+                        {% endif %}
+
+                        <form method="post" enctype="multipart/form-data" id="uploadForm">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="{{ form.file.id_for_label }}" class="form-label">{{ form.file.label }}</label>
+                                {{ form.file }}
+                                {% if form.file.help_text %}
+                                <div class="form-text text-muted">{{ form.file.help_text }}</div>
+                                {% endif %}
+                                {% if form.file.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.file.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="uploadBtn">
+                                <i class="bi bi-upload"></i> Upload and Predict
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="feature-list">
+                            <h5>Features</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i> Hierarchical prediction model</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i> Geocoding capability</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i> Category classification</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i> Dimension & weight analysis</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i> CSV/Excel file support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="file-format-info">
+                    <h6><i class="bi bi-info-circle"></i> Required File Format</h6>
+                    <p>Your file should include the following columns:</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PRENOTAZIONE</td>
+                                    <td>Shipment ID (required)</td>
+                                </tr>
+                                <tr>
+                                    <td>goods_type</td>
+                                    <td>Type of goods being shipped</td>
+                                </tr>
+                                <tr>
+                                    <td>service_type</td>
+                                    <td>Service type for the shipment</td>
+                                </tr>
+                                <tr>
+                                    <td>shipping_type</td>
+                                    <td>Type of shipping</td>
+                                </tr>
+                                <tr>
+                                    <td>goods_description</td>
+                                    <td>Description of goods (for categorization)</td>
+                                </tr>
+                                <tr>
+                                    <td>dogana</td>
+                                    <td>Customs flag (0 or 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>DryIce</td>
+                                    <td>Dry ice flag (0 or 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>is_dangerous</td>
+                                    <td>Dangerous flag (0 or 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>colli</td>
+                                    <td>Parcel information (JSON format)</td>
+                                </tr>
+                                <tr>
+                                    <td>CAP_CLIFOR_DEST</td>
+                                    <td>Destination postal_code</td>
+                                </tr>
+                                <tr>
+                                    <td>COD_NAZIONE_CLIFOR_DEST</td>
+                                    <td>Destination Country</td>
+                                </tr>
+                                <tr>
+                                    <td>CAP_CLIFOR_MITT</td>
+                                    <td>Origin postal_code</td>
+                                </tr>
+                                <tr>
+                                    <td>COD_NAZIONE_CLIFOR_MITT</td>
+                                    <td>Origin country</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'predictor/js/upload.js' %}"></script>
+{% endblock %}
